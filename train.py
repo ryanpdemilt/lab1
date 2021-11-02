@@ -54,7 +54,7 @@ if args.cuda:
 
 model = models.resnet50()
 
-num_ftrs = model.fc.in_features
+in_features = model.fc.in_features
 model.fc = nn.Linear(in_features, args.num_classes)
 
 
@@ -112,7 +112,7 @@ for epoch in range(0, args.epochs):
     correct = 0.
     total = 0.
 
-    progress_bar = tqdm(train_loader)
+    progress_bar = tqdm(train_loader,unit ='img',unit_scale = args.batch_size)
     for i, (images,labels) in enumerate(progress_bar):
         progress_bar.set_description('Epoch ' + str(epoch))
 

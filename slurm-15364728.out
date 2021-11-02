@@ -1,0 +1,179 @@
+DataParallel(
+  (module): ResNet(
+    (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (relu): ReLU(inplace=True)
+    (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (layer1): Sequential(
+      (0): Bottleneck(
+        (conv1): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (downsample): Sequential(
+          (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): Bottleneck(
+        (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (2): Bottleneck(
+        (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (layer2): Sequential(
+      (0): Bottleneck(
+        (conv1): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (downsample): Sequential(
+          (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): Bottleneck(
+        (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (2): Bottleneck(
+        (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (3): Bottleneck(
+        (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (layer3): Sequential(
+      (0): Bottleneck(
+        (conv1): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (downsample): Sequential(
+          (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): Bottleneck(
+        (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (2): Bottleneck(
+        (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (3): Bottleneck(
+        (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (4): Bottleneck(
+        (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (5): Bottleneck(
+        (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (layer4): Sequential(
+      (0): Bottleneck(
+        (conv1): Conv2d(1024, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (downsample): Sequential(
+          (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): Bottleneck(
+        (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (2): Bottleneck(
+        (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+    (fc): Linear(in_features=2048, out_features=100, bias=True)
+  )
+)
+  0%|          | 0/123648 [00:00<?, ?img/s]Epoch 0:   0%|          | 0/123648 [00:10<?, ?img/s]Epoch 0:   0%|          | 0/123648 [00:10<?, ?img/s, acc=0.000, xentropy=4.809]Epoch 0:   0%|          | 128/123648 [00:10<2:55:08, 11.75img/s, acc=0.000, xentropy=4.809]Epoch 0:   0%|          | 128/123648 [00:10<2:55:08, 11.75img/s, acc=0.000, xentropy=4.809]Epoch 0:   0%|          | 128/123648 [00:11<2:55:08, 11.75img/s, acc=2.734, xentropy=8.952]Epoch 0:   0%|          | 256/123648 [00:11<1:17:43, 26.46img/s, acc=2.734, xentropy=8.952]Epoch 0:   0%|          | 256/123648 [00:11<1:17:43, 26.46img/s, acc=2.734, xentropy=8.952]Epoch 0:   0%|          | 256/123648 [00:12<1:17:43, 26.46img/s, acc=2.865, xentropy=12.548]Epoch 0:   0%|          | 384/123648 [00:12<46:36, 44.08img/s, acc=2.865, xentropy=12.548]  Epoch 0:   0%|          | 384/123648 [00:12<46:36, 44.08img/s, acc=2.865, xentropy=12.548]Epoch 0:   0%|          | 384/123648 [00:12<46:36, 44.08img/s, acc=3.516, xentropy=13.730]Epoch 0:   0%|          | 512/123648 [00:12<31:58, 64.17img/s, acc=3.516, xentropy=13.730]Epoch 0:   0%|          | 512/123648 [00:19<31:58, 64.17img/s, acc=3.516, xentropy=13.730]Epoch 0:   0%|          | 512/123648 [00:20<31:58, 64.17img/s, acc=3.906, xentropy=13.318]Epoch 0:   1%|          | 640/123648 [00:20<1:04:15, 31.90img/s, acc=3.906, xentropy=13.318]Epoch 0:   1%|          | 640/123648 [00:20<1:04:15, 31.90img/s, acc=3.906, xentropy=13.318]Epoch 0:   1%|          | 640/123648 [00:20<1:04:15, 31.90img/s, acc=3.646, xentropy=12.937]Epoch 0:   1%|          | 768/123648 [00:20<45:38, 44.87img/s, acc=3.646, xentropy=12.937]  Epoch 0:   1%|          | 768/123648 [00:20<45:38, 44.87img/s, acc=3.646, xentropy=12.937]Epoch 0:   1%|          | 768/123648 [00:21<45:38, 44.87img/s, acc=3.683, xentropy=12.648]Epoch 0:   1%|          | 896/123648 [00:21<33:49, 60.48img/s, acc=3.683, xentropy=12.648]Epoch 0:   1%|          | 896/123648 [00:21<33:49, 60.48img/s, acc=3.683, xentropy=12.648]Epoch 0:   1%|          | 896/123648 [00:22<33:49, 60.48img/s, acc=3.418, xentropy=13.129]Epoch 0:   1%|          | 1024/123648 [00:22<26:05, 78.33img/s, acc=3.418, xentropy=13.129]Epoch 0:   1%|          | 1024/123648 [00:27<26:05, 78.33img/s, acc=3.418, xentropy=13.129]Epoch 0:   1%|          | 1024/123648 [00:28<26:05, 78.33img/s, acc=3.125, xentropy=12.613]Epoch 0:   1%|          | 1152/123648 [00:28<48:33, 42.05img/s, acc=3.125, xentropy=12.613]Epoch 0:   1%|          | 1152/123648 [00:28<48:33, 42.05img/s, acc=3.125, xentropy=12.613]Epoch 0:   1%|          | 1152/123648 [00:28<48:33, 42.05img/s, acc=3.125, xentropy=12.122]Epoch 0:   1%|          | 1280/123648 [00:28<36:29, 55.90img/s, acc=3.125, xentropy=12.122]Epoch 0:   1%|          | 1280/123648 [00:28<36:29, 55.90img/s, acc=3.125, xentropy=12.122]Epoch 0:   1%|          | 1280/123648 [00:29<36:29, 55.90img/s, acc=3.054, xentropy=11.509]Epoch 0:   1%|          | 1408/123648 [00:29<28:13, 72.18img/s, acc=3.054, xentropy=11.509]Epoch 0:   1%|          | 1408/123648 [00:29<28:13, 72.18img/s, acc=3.054, xentropy=11.509]Epoch 0:   1%|          | 1408/123648 [00:30<28:13, 72.18img/s, acc=3.190, xentropy=11.056]Epoch 0:   1%|          | 1536/123648 [00:30<22:31, 90.34img/s, acc=3.190, xentropy=11.056]Epoch 0:   1%|          | 1536/123648 [00:35<22:31, 90.34img/s, acc=3.190, xentropy=11.056]Epoch 0:   1%|          | 1536/123648 [00:36<22:31, 90.34img/s, acc=3.185, xentropy=10.678]Epoch 0:   1%|▏         | 1664/123648 [00:36<46:44, 43.49img/s, acc=3.185, xentropy=10.678]Epoch 0:   1%|▏         | 1664/123648 [00:36<46:44, 43.49img/s, acc=3.185, xentropy=10.678]Epoch 0:   1%|▏         | 1664/123648 [00:37<46:44, 43.49img/s, acc=3.181, xentropy=10.351]Epoch 0:   1%|▏         | 1792/123648 [00:37<35:28, 57.25img/s, acc=3.181, xentropy=10.351]Epoch 0:   1%|▏         | 1792/123648 [00:37<35:28, 57.25img/s, acc=3.181, xentropy=10.351]Epoch 0:   1%|▏         | 1792/123648 [00:37<35:28, 57.25img/s, acc=3.229, xentropy=10.492]Epoch 0:   2%|▏         | 1920/123648 [00:37<27:37, 73.42img/s, acc=3.229, xentropy=10.492]Epoch 0:   2%|▏         | 1920/123648 [00:37<27:37, 73.42img/s, acc=3.229, xentropy=10.492]Epoch 0:   2%|▏         | 1920/123648 [00:38<27:37, 73.42img/s, acc=3.125, xentropy=10.182]Epoch 0:   2%|▏         | 2048/123648 [00:38<22:09, 91.44img/s, acc=3.125, xentropy=10.182]Epoch 0:   2%|▏         | 2048/123648 [00:44<22:09, 91.44img/s, acc=3.125, xentropy=10.182]Epoch 0:   2%|▏         | 2048/123648 [00:44<22:09, 91.44img/s, acc=3.217, xentropy=9.919] Epoch 0:   2%|▏         | 2176/123648 [00:44<46:05, 43.92img/s, acc=3.217, xentropy=9.919]Epoch 0:   2%|▏         | 2176/123648 [00:44<46:05, 43.92img/s, acc=3.217, xentropy=9.919]Epoch 0:   2%|▏         | 2176/123648 [00:45<46:05, 43.92img/s, acc=3.168, xentropy=9.714]Epoch 0:   2%|▏         | 2304/123648 [00:45<35:03, 57.67img/s, acc=3.168, xentropy=9.714]Epoch 0:   2%|▏         | 2304/123648 [00:45<35:03, 57.67img/s, acc=3.168, xentropy=9.714]Epoch 0:   2%|▏         | 2304/123648 [00:45<35:03, 57.67img/s, acc=3.084, xentropy=9.485]Epoch 0:   2%|▏         | 2432/123648 [00:45<27:21, 73.84img/s, acc=3.084, xentropy=9.485]Epoch 0:   2%|▏         | 2432/123648 [00:45<27:21, 73.84img/s, acc=3.084, xentropy=9.485]Epoch 0:   2%|▏         | 2432/123648 [00:46<27:21, 73.84img/s, acc=3.203, xentropy=9.380]Epoch 0:   2%|▏         | 2560/123648 [00:46<21:58, 91.84img/s, acc=3.203, xentropy=9.380]Epoch 0:   2%|▏         | 2560/123648 [00:51<21:58, 91.84img/s, acc=3.203, xentropy=9.380]Epoch 0:   2%|▏         | 2560/123648 [00:51<21:58, 91.84img/s, acc=3.125, xentropy=9.547]Epoch 0:   2%|▏         | 2688/123648 [00:51<40:48, 49.41img/s, acc=3.125, xentropy=9.547]Epoch 0:   2%|▏         | 2688/123648 [00:51<40:48, 49.41img/s, acc=3.125, xentropy=9.547]Epoch 0:   2%|▏         | 2688/123648 [00:52<40:48, 49.41img/s, acc=3.089, xentropy=9.357]Epoch 0:   2%|▏         | 2816/123648 [00:52<31:22, 64.19img/s, acc=3.089, xentropy=9.357]Epoch 0:   2%|▏         | 2816/123648 [00:52<31:22, 64.19img/s, acc=3.089, xentropy=9.357]Epoch 0:   2%|▏         | 2816/123648 [00:53<31:22, 64.19img/s, acc=3.125, xentropy=9.157]Epoch 0:   2%|▏         | 2944/123648 [00:53<24:46, 81.19img/s, acc=3.125, xentropy=9.157]Epoch 0:   2%|▏         | 2944/123648 [00:53<24:46, 81.19img/s, acc=3.125, xentropy=9.157]Epoch 0:   2%|▏         | 2944/123648 [00:53<24:46, 81.19img/s, acc=3.125, xentropy=8.984]Epoch 0:   2%|▏         | 3072/123648 [00:53<20:09, 99.66img/s, acc=3.125, xentropy=8.984]Epoch 0:   2%|▏         | 3072/123648 [00:58<20:09, 99.66img/s, acc=3.125, xentropy=8.984]Epoch 0:   2%|▏         | 3072/123648 [00:58<20:09, 99.66img/s, acc=3.094, xentropy=8.810]Epoch 0:   3%|▎         | 3200/123648 [00:58<38:20, 52.36img/s, acc=3.094, xentropy=8.810]Epoch 0:   3%|▎         | 3200/123648 [00:58<38:20, 52.36img/s, acc=3.094, xentropy=8.810]Epoch 0:   3%|▎         | 3200/123648 [00:59<38:20, 52.36img/s, acc=3.095, xentropy=8.646]Epoch 0:   3%|▎         | 3328/123648 [00:59<29:38, 67.65img/s, acc=3.095, xentropy=8.646]Epoch 0:   3%|▎         | 3328/123648 [00:59<29:38, 67.65img/s, acc=3.095, xentropy=8.646]Epoch 0:   3%|▎         | 3328/123648 [01:00<29:38, 67.65img/s, acc=3.067, xentropy=8.514]Epoch 0:   3%|▎         | 3456/123648 [01:00<23:33, 85.05img/s, acc=3.067, xentropy=8.514]Epoch 0:   3%|▎         | 3456/123648 [01:00<23:33, 85.05img/s, acc=3.067, xentropy=8.514]Epoch 0:   3%|▎         | 3456/123648 [01:00<23:33, 85.05img/s, acc=3.013, xentropy=8.391]Epoch 0:   3%|▎         | 3584/123648 [01:00<19:17, 103.72img/s, acc=3.013, xentropy=8.391]Epoch 0:   3%|▎         | 3584/123648 [01:05<19:17, 103.72img/s, acc=3.013, xentropy=8.391]Epoch 0:   3%|▎         | 3584/123648 [01:06<19:17, 103.72img/s, acc=2.990, xentropy=8.274]Epoch 0:   3%|▎         | 3712/123648 [01:06<40:50, 48.95img/s, acc=2.990, xentropy=8.274] Epoch 0:   3%|▎         | 3712/123648 [01:06<40:50, 48.95img/s, acc=2.990, xentropy=8.274]Epoch 0:   3%|▎         | 3712/123648 [01:07<40:50, 48.95img/s, acc=3.021, xentropy=8.164]Epoch 0:   3%|▎         | 3840/123648 [01:07<31:23, 63.62img/s, acc=3.021, xentropy=8.164]Epoch 0:   3%|▎         | 3840/123648 [01:07<31:23, 63.62img/s, acc=3.021, xentropy=8.164]Epoch 0:   3%|▎         | 3840/123648 [01:07<31:23, 63.62img/s, acc=3.024, xentropy=8.054]Epoch 0:   3%|▎         | 3968/123648 [01:07<24:46, 80.50img/s, acc=3.024, xentropy=8.054]Epoch 0:   3%|▎         | 3968/123648 [01:07<24:46, 80.50img/s, acc=3.024, xentropy=8.054]Epoch 0:   3%|▎         | 3968/123648 [01:08<24:46, 80.50img/s, acc=3.125, xentropy=7.943]Epoch 0:   3%|▎         | 4096/123648 [01:08<20:08, 98.93img/s, acc=3.125, xentropy=7.943]Epoch 0:   3%|▎         | 4096/123648 [01:12<20:08, 98.93img/s, acc=3.125, xentropy=7.943]Epoch 0:   3%|▎         | 4096/123648 [01:13<20:08, 98.93img/s, acc=3.125, xentropy=7.850]Epoch 0:   3%|▎         | 4224/123648 [01:13<37:06, 53.63img/s, acc=3.125, xentropy=7.850]Epoch 0:   3%|▎         | 4224/123648 [01:13<37:06, 53.63img/s, acc=3.125, xentropy=7.850]Epoch 0:   3%|▎         | 4224/123648 [01:13<37:06, 53.63img/s, acc=3.217, xentropy=7.760]Epoch 0:   4%|▎         | 4352/123648 [01:13<28:45, 69.13img/s, acc=3.217, xentropy=7.760]Epoch 0:   4%|▎         | 4352/123648 [01:13<28:45, 69.13img/s, acc=3.217, xentropy=7.760]Epoch 0:   4%|▎         | 4352/123648 [01:14<28:45, 69.13img/s, acc=3.147, xentropy=7.668]Epoch 0:   4%|▎         | 4480/123648 [01:14<22:55, 86.64img/s, acc=3.147, xentropy=7.668]Epoch 0:   4%|▎         | 4480/123648 [01:14<22:55, 86.64img/s, acc=3.147, xentropy=7.668]Epoch 0:   4%|▎         | 4480/123648 [01:15<22:55, 86.64img/s, acc=3.147, xentropy=7.593]Epoch 0:   4%|▎         | 4608/123648 [01:15<18:50, 105.29img/s, acc=3.147, xentropy=7.593]Epoch 0:   4%|▎         | 4608/123648 [01:20<18:50, 105.29img/s, acc=3.147, xentropy=7.593]Epoch 0:   4%|▎         | 4608/123648 [01:20<18:50, 105.29img/s, acc=3.125, xentropy=7.514]Epoch 0:   4%|▍         | 4736/123648 [01:20<40:33, 48.87img/s, acc=3.125, xentropy=7.514] Epoch 0:   4%|▍         | 4736/123648 [01:20<40:33, 48.87img/s, acc=3.125, xentropy=7.514]Epoch 0:   4%|▍         | 4736/123648 [01:21<40:33, 48.87img/s, acc=3.104, xentropy=7.433]Epoch 0:   4%|▍         | 4864/123648 [01:21<31:10, 63.49img/s, acc=3.104, xentropy=7.433]Epoch 0:   4%|▍         | 4864/123648 [01:21<31:10, 63.49img/s, acc=3.104, xentropy=7.433]Epoch 0:   4%|▍         | 4864/123648 [01:22<31:10, 63.49img/s, acc=3.085, xentropy=7.357]Epoch 0:   4%|▍         | 4992/123648 [01:22<24:35, 80.40img/s, acc=3.085, xentropy=7.357]Epoch 0:   4%|▍         | 4992/123648 [01:22<24:35, 80.40img/s, acc=3.085, xentropy=7.357]Epoch 0:   4%|▍         | 4992/123648 [01:22<24:35, 80.40img/s, acc=3.047, xentropy=7.285]Epoch 0:   4%|▍         | 5120/123648 [01:22<19:59, 98.80img/s, acc=3.047, xentropy=7.285]Epoch 0:   4%|▍         | 5120/123648 [01:27<19:59, 98.80img/s, acc=3.047, xentropy=7.285]Epoch 0:   4%|▍         | 5120/123648 [01:28<19:59, 98.80img/s, acc=3.087, xentropy=7.215]Epoch 0:   4%|▍         | 5248/123648 [01:28<40:26, 48.79img/s, acc=3.087, xentropy=7.215]Epoch 0:   4%|▍         | 5248/123648 [01:28<40:26, 48.79img/s, acc=3.087, xentropy=7.215]Epoch 0:   4%|▍         | 5248/123648 [01:29<40:26, 48.79img/s, acc=3.088, xentropy=7.147]Epoch 0:   4%|▍         | 5376/123648 [01:29<31:03, 63.46img/s, acc=3.088, xentropy=7.147]Epoch 0:   4%|▍         | 5376/123648 [01:29<31:03, 63.46img/s, acc=3.088, xentropy=7.147]Epoch 0:   4%|▍         | 5376/123648 [01:29<31:03, 63.46img/s, acc=3.125, xentropy=7.084]Epoch 0:   4%|▍         | 5504/123648 [01:29<24:30, 80.36img/s, acc=3.125, xentropy=7.084]Epoch 0:   4%|▍         | 5504/123648 [01:29<24:30, 80.36img/s, acc=3.125, xentropy=7.084]Epoch 0:   4%|▍         | 5504/123648 [01:30<24:30, 80.36img/s, acc=3.143, xentropy=7.023]Epoch 0:   5%|▍         | 5632/123648 [01:30<19:54, 98.79img/s, acc=3.143, xentropy=7.023]Epoch 0:   5%|▍         | 5632/123648 [01:35<19:54, 98.79img/s, acc=3.143, xentropy=7.023]Epoch 0:   5%|▍         | 5632/123648 [01:35<19:54, 98.79img/s, acc=3.108, xentropy=6.965]Epoch 0:   5%|▍         | 5760/123648 [01:35<39:04, 50.28img/s, acc=3.108, xentropy=6.965]Epoch 0:   5%|▍         | 5760/123648 [01:35<39:04, 50.28img/s, acc=3.108, xentropy=6.965]Epoch 0:   5%|▍         | 5760/123648 [01:36<39:04, 50.28img/s, acc=3.159, xentropy=6.910]Epoch 0:   5%|▍         | 5888/123648 [01:36<30:05, 65.21img/s, acc=3.159, xentropy=6.910]Epoch 0:   5%|▍         | 5888/123648 [01:36<30:05, 65.21img/s, acc=3.159, xentropy=6.910]Epoch 0:   5%|▍         | 5888/123648 [01:36<30:05, 65.21img/s, acc=3.225, xentropy=6.856]Epoch 0:   5%|▍         | 6016/123648 [01:36<23:48, 82.33img/s, acc=3.225, xentropy=6.856]Epoch 0:   5%|▍         | 6016/123648 [01:36<23:48, 82.33img/s, acc=3.225, xentropy=6.856]Epoch 0:   5%|▍         | 6016/123648 [01:37<23:48, 82.33img/s, acc=3.255, xentropy=6.803]Epoch 0:   5%|▍         | 6144/123648 [01:37<19:24, 100.88img/s, acc=3.255, xentropy=6.803]Epoch 0:   5%|▍         | 6144/123648 [01:43<19:24, 100.88img/s, acc=3.255, xentropy=6.803]Epoch 0:   5%|▍         | 6144/123648 [01:43<19:24, 100.88img/s, acc=3.268, xentropy=6.752]Epoch 0:   5%|▌         | 6272/123648 [01:43<41:14, 47.42img/s, acc=3.268, xentropy=6.752] Epoch 0:   5%|▌         | 6272/123648 [01:43<41:14, 47.42img/s, acc=3.268, xentropy=6.752]Epoch 0:   5%|▌         | 6272/123648 [01:44<41:14, 47.42img/s, acc=3.266, xentropy=6.704]Epoch 0:   5%|▌         | 6400/123648 [01:44<31:35, 61.84img/s, acc=3.266, xentropy=6.704]Epoch 0:   5%|▌         | 6400/123648 [01:44<31:35, 61.84img/s, acc=3.266, xentropy=6.704]Epoch 0:   5%|▌         | 6400/123648 [01:44<31:35, 61.84img/s, acc=3.294, xentropy=6.657]Epoch 0:   5%|▌         | 6528/123648 [01:44<24:50, 78.56img/s, acc=3.294, xentropy=6.657]Epoch 0:   5%|▌         | 6528/123648 [01:44<24:50, 78.56img/s, acc=3.294, xentropy=6.657]Epoch 0:   5%|▌         | 6528/123648 [01:45<24:50, 78.56img/s, acc=3.275, xentropy=6.613]Epoch 0:   5%|▌         | 6656/123648 [01:45<20:07, 96.85img/s, acc=3.275, xentropy=6.613]Epoch 0:   5%|▌         | 6656/123648 [01:49<20:07, 96.85img/s, acc=3.275, xentropy=6.613]Epoch 0:   5%|▌         | 6656/123648 [01:50<20:07, 96.85img/s, acc=3.302, xentropy=6.571]Epoch 0:   5%|▌         | 6784/123648 [01:50<35:31, 54.82img/s, acc=3.302, xentropy=6.571]Epoch 0:   5%|▌         | 6784/123648 [01:50<35:31, 54.82img/s, acc=3.302, xentropy=6.571]Epoch 0:   5%|▌         | 6784/123648 [01:50<35:31, 54.82img/s, acc=3.284, xentropy=6.529]Epoch 0:   6%|▌         | 6912/123648 [01:50<27:35, 70.52img/s, acc=3.284, xentropy=6.529]Epoch 0:   6%|▌         | 6912/123648 [01:50<27:35, 70.52img/s, acc=3.284, xentropy=6.529]Epoch 0:   6%|▌         | 6912/123648 [01:51<27:35, 70.52img/s, acc=3.310, xentropy=6.488]Epoch 0:   6%|▌         | 7040/123648 [01:51<22:02, 88.19img/s, acc=3.310, xentropy=6.488]Epoch 0:   6%|▌         | 7040/123648 [01:51<22:02, 88.19img/s, acc=3.310, xentropy=6.488]Epoch 0:   6%|▌         | 7040/123648 [01:51<22:02, 88.19img/s, acc=3.334, xentropy=6.449]Epoch 0:   6%|▌         | 7168/123648 [01:51<18:09, 106.96img/s, acc=3.334, xentropy=6.449]Epoch 0:   6%|▌         | 7168/123648 [01:56<18:09, 106.96img/s, acc=3.334, xentropy=6.449]Epoch 0:   6%|▌         | 7168/123648 [01:56<18:09, 106.96img/s, acc=3.344, xentropy=6.412]Epoch 0:   6%|▌         | 7296/123648 [01:56<34:12, 56.68img/s, acc=3.344, xentropy=6.412] Epoch 0:   6%|▌         | 7296/123648 [01:56<34:12, 56.68img/s, acc=3.344, xentropy=6.412]Epoch 0:   6%|▌         | 7296/123648 [01:57<34:12, 56.68img/s, acc=3.327, xentropy=6.375]Epoch 0:   6%|▌         | 7424/123648 [01:57<26:39, 72.67img/s, acc=3.327, xentropy=6.375]Epoch 0:   6%|▌         | 7424/123648 [01:57<26:39, 72.67img/s, acc=3.327, xentropy=6.375]Epoch 0:   6%|▌         | 7424/123648 [01:57<26:39, 72.67img/s, acc=3.363, xentropy=6.340]Epoch 0:   6%|▌         | 7552/123648 [01:57<21:22, 90.56img/s, acc=3.363, xentropy=6.340]Epoch 0:   6%|▌         | 7552/123648 [01:57<21:22, 90.56img/s, acc=3.363, xentropy=6.340]Epoch 0:   6%|▌         | 7552/123648 [01:58<21:22, 90.56img/s, acc=3.451, xentropy=6.304]Epoch 0:   6%|▌         | 7680/123648 [01:58<17:40, 109.37img/s, acc=3.451, xentropy=6.304]Epoch 0:   6%|▌         | 7680/123648 [02:02<17:40, 109.37img/s, acc=3.451, xentropy=6.304]Epoch 0:   6%|▌         | 7680/123648 [02:03<17:40, 109.37img/s, acc=3.432, xentropy=6.274]Epoch 0:   6%|▋         | 7808/123648 [02:03<33:48, 57.10img/s, acc=3.432, xentropy=6.274] Epoch 0:   6%|▋         | 7808/123648 [02:03<33:48, 57.10img/s, acc=3.432, xentropy=6.274]Epoch 0:   6%|▋         | 7808/123648 [02:03<33:48, 57.10img/s, acc=3.427, xentropy=6.242]Epoch 0:   6%|▋         | 7936/123648 [02:03<26:21, 73.16img/s, acc=3.427, xentropy=6.242]Epoch 0:   6%|▋         | 7936/123648 [02:03<26:21, 73.16img/s, acc=3.427, xentropy=6.242]Epoch 0:   6%|▋         | 7936/123648 [02:04<26:21, 73.16img/s, acc=3.410, xentropy=6.210]Epoch 0:   7%|▋         | 8064/123648 [02:04<21:08, 91.09img/s, acc=3.410, xentropy=6.210]Epoch 0:   7%|▋         | 8064/123648 [02:04<21:08, 91.09img/s, acc=3.410, xentropy=6.210]Epoch 0:   7%|▋         | 8064/123648 [02:05<21:08, 91.09img/s, acc=3.394, xentropy=6.180]Epoch 0:   7%|▋         | 8192/123648 [02:05<17:30, 109.87img/s, acc=3.394, xentropy=6.180]Epoch 0:   7%|▋         | 8192/123648 [02:09<17:30, 109.87img/s, acc=3.394, xentropy=6.180]Epoch 0:   7%|▋         | 8192/123648 [02:09<17:30, 109.87img/s, acc=3.365, xentropy=6.153]Epoch 0:   7%|▋         | 8320/123648 [02:09<33:50, 56.80img/s, acc=3.365, xentropy=6.153] Epoch 0:   7%|▋         | 8320/123648 [02:09<33:50, 56.80img/s, acc=3.365, xentropy=6.153]Epoch 0:   7%|▋         | 8320/123648 [02:10<33:50, 56.80img/s, acc=3.374, xentropy=6.124]Epoch 0:   7%|▋         | 8448/123648 [02:10<26:23, 72.76img/s, acc=3.374, xentropy=6.124]Epoch 0:   7%|▋         | 8448/123648 [02:10<26:23, 72.76img/s, acc=3.374, xentropy=6.124]Epoch 0:   7%|▋         | 8448/123648 [02:11<26:23, 72.76img/s, acc=3.370, xentropy=6.095]Epoch 0:   7%|▋         | 8576/123648 [02:11<21:09, 90.62img/s, acc=3.370, xentropy=6.095]Epoch 0:   7%|▋         | 8576/123648 [02:11<21:09, 90.62img/s, acc=3.370, xentropy=6.095]Epoch 0:   7%|▋         | 8576/123648 [02:11<21:09, 90.62img/s, acc=3.343, xentropy=6.067]Epoch 0:   7%|▋         | 8704/123648 [02:11<17:30, 109.45img/s, acc=3.343, xentropy=6.067]Epoch 0:   7%|▋         | 8704/123648 [02:15<17:30, 109.45img/s, acc=3.343, xentropy=6.067]Epoch 0:   7%|▋         | 8704/123648 [02:16<17:30, 109.45img/s, acc=3.329, xentropy=6.040]Epoch 0:   7%|▋         | 8832/123648 [02:16<33:22, 57.35img/s, acc=3.329, xentropy=6.040] Epoch 0:   7%|▋         | 8832/123648 [02:16<33:22, 57.35img/s, acc=3.329, xentropy=6.040]Epoch 0:   7%|▋         | 8832/123648 [02:16<33:22, 57.35img/s, acc=3.292, xentropy=6.015]Epoch 0:   7%|▋         | 8960/123648 [02:16<26:02, 73.40img/s, acc=3.292, xentropy=6.015]Epoch 0:   7%|▋         | 8960/123648 [02:16<26:02, 73.40img/s, acc=3.292, xentropy=6.015]Epoch 0:   7%|▋         | 8960/123648 [02:17<26:02, 73.40img/s, acc=3.290, xentropy=5.989]Epoch 0:   7%|▋         | 9088/123648 [02:17<20:54, 91.32img/s, acc=3.290, xentropy=5.989]Epoch 0:   7%|▋         | 9088/123648 [02:17<20:54, 91.32img/s, acc=3.290, xentropy=5.989]Epoch 0:   7%|▋         | 9088/123648 [02:18<20:54, 91.32img/s, acc=3.266, xentropy=5.964]Epoch 0:   7%|▋         | 9216/123648 [02:18<17:18, 110.20img/s, acc=3.266, xentropy=5.964]Epoch 0:   7%|▋         | 9216/123648 [02:21<17:18, 110.20img/s, acc=3.266, xentropy=5.964]Epoch 0:   7%|▋         | 9216/123648 [02:22<17:18, 110.20img/s, acc=3.253, xentropy=5.939]Epoch 0:   8%|▊         | 9344/123648 [02:22<31:35, 60.32img/s, acc=3.253, xentropy=5.939] Epoch 0:   8%|▊         | 9344/123648 [02:22<31:35, 60.32img/s, acc=3.253, xentropy=5.939]Epoch 0:   8%|▊         | 9344/123648 [02:23<31:35, 60.32img/s, acc=3.262, xentropy=5.914]Epoch 0:   8%|▊         | 9472/123648 [02:23<24:46, 76.82img/s, acc=3.262, xentropy=5.914]Epoch 0:   8%|▊         | 9472/123648 [02:23<24:46, 76.82img/s, acc=3.262, xentropy=5.914]Epoch 0:   8%|▊         | 9472/123648 [02:23<24:46, 76.82img/s, acc=3.281, xentropy=5.892]Epoch 0:   8%|▊         | 9600/123648 [02:23<20:00, 95.03img/s, acc=3.281, xentropy=5.892]Epoch 0:   8%|▊         | 9600/123648 [02:23<20:00, 95.03img/s, acc=3.281, xentropy=5.892]Epoch 0:   8%|▊         | 9600/123648 [02:24<20:00, 95.03img/s, acc=3.310, xentropy=5.869]Epoch 0:   8%|▊         | 9728/123648 [02:24<16:39, 113.94img/s, acc=3.310, xentropy=5.869]Epoch 0:   8%|▊         | 9728/123648 [02:28<16:39, 113.94img/s, acc=3.310, xentropy=5.869]Epoch 0:   8%|▊         | 9728/123648 [02:28<16:39, 113.94img/s, acc=3.287, xentropy=5.847]Epoch 0:   8%|▊         | 9856/123648 [02:28<31:20, 60.51img/s, acc=3.287, xentropy=5.847] Epoch 0:   8%|▊         | 9856/123648 [02:28<31:20, 60.51img/s, acc=3.287, xentropy=5.847]Epoch 0:   8%|▊         | 9856/123648 [02:29<31:20, 60.51img/s, acc=3.315, xentropy=5.825]Epoch 0:   8%|▊         | 9984/123648 [02:29<24:35, 77.03img/s, acc=3.315, xentropy=5.825]Epoch 0:   8%|▊         | 9984/123648 [02:29<24:35, 77.03img/s, acc=3.315, xentropy=5.825]Epoch 0:   8%|▊         | 9984/123648 [02:29<24:35, 77.03img/s, acc=3.323, xentropy=5.805]Epoch 0:   8%|▊         | 10112/123648 [02:29<19:51, 95.25img/s, acc=3.323, xentropy=5.805]Epoch 0:   8%|▊         | 10112/123648 [02:29<19:51, 95.25img/s, acc=3.323, xentropy=5.805]Epoch 0:   8%|▊         | 10112/123648 [02:30<19:51, 95.25img/s, acc=3.320, xentropy=5.784]Epoch 0:   8%|▊         | 10240/123648 [02:30<16:33, 114.14img/s, acc=3.320, xentropy=5.784]Epoch 0:   8%|▊         | 10240/123648 [02:34<16:33, 114.14img/s, acc=3.320, xentropy=5.784]Epoch 0:   8%|▊         | 10240/123648 [02:35<16:33, 114.14img/s, acc=3.328, xentropy=5.765]Epoch 0:   8%|▊         | 10368/123648 [02:35<32:27, 58.17img/s, acc=3.328, xentropy=5.765] Epoch 0:   8%|▊         | 10368/123648 [02:35<32:27, 58.17img/s, acc=3.328, xentropy=5.765]Epoch 0:   8%|▊         | 10368/123648 [02:35<32:27, 58.17img/s, acc=3.344, xentropy=5.746]Epoch 0:   8%|▊         | 10496/123648 [02:35<25:21, 74.37img/s, acc=3.344, xentropy=5.746]Epoch 0:   8%|▊         | 10496/123648 [02:35<25:21, 74.37img/s, acc=3.344, xentropy=5.746]Epoch 0:   8%|▊         | 10496/123648 [02:36<25:21, 74.37img/s, acc=3.360, xentropy=5.726]Epoch 0:   9%|▊         | 10624/123648 [02:36<20:23, 92.37img/s, acc=3.360, xentropy=5.726]Epoch 0:   9%|▊         | 10624/123648 [02:36<20:23, 92.37img/s, acc=3.360, xentropy=5.726]Epoch 0:   9%|▊         | 10624/123648 [02:37<20:23, 92.37img/s, acc=3.413, xentropy=5.706]Epoch 0:   9%|▊         | 10752/123648 [02:37<16:54, 111.25img/s, acc=3.413, xentropy=5.706]
