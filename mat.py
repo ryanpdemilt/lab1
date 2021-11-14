@@ -6,8 +6,8 @@ from dateutil.relativedelta import relativedelta
 
 cols = ['age', 'gender', 'path', 'face_score1', 'face_score2']
 
-imdb_mat = '../data/imdb_crop/imdb.mat'
-wiki_mat = '../data/wiki/wiki.mat'
+imdb_mat = '/users/PAS1906/demilt4/cse5449/data/imdb_crop/imdb.mat'
+wiki_mat = '/users/PAS1906/demilt4/cse5449/data/wiki/wiki.mat'
 
 imdb_data = loadmat(imdb_mat)
 wiki_data = loadmat(wiki_mat)
@@ -33,10 +33,10 @@ imdb_path = []
 wiki_path = []
 
 for path in imdb_full_path:
-    imdb_path.append('../data/imdb_crop/' + path[0])
+    imdb_path.append('/users/PAS1906/demilt4/cse5449/data/imdb_crop/' + path[0])
 
 for path in wiki_full_path:
-    wiki_path.append('../data/wiki/' + path[0])
+    wiki_path.append('/users/PAS1906/demilt4/cse5449/data/wiki/' + path[0])
 
 imdb_genders = []
 wiki_genders = []
