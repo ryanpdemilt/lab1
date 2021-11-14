@@ -14,8 +14,9 @@ import torchvision.models as models
 import torchvision.transforms as transforms
 from dataset import IMDBWikiDataset
 #from util.misc import CSVLogger
+#salloc --account=PAS2056 --nodes=2 --gpus-per-node=1 srun --pty /bin/bash
 
-data_file = 'meta.csv'
+data_file = '/users/PAS1906/demilt4/cse5449/lab1/meta.csv'
 
 model_options = ['resnet18', 'resnet50', 'resnet101', 'wideresnet']
 dataset_options = ['IMDB-Wiki']
@@ -26,11 +27,11 @@ parser.add_argument('--dataset', '-d', default='IMDB-Wiki',
                     choices=dataset_options)
 parser.add_argument('--model', '-a', default='resnet50',
                     choices=model_options)
-parser.add_argument('--num_classes','-n',type=int,default=100,
+parser.add_argument('--num_classes','-n',type=int,default=130,
                     help = 'number of classes for age ranking')
 parser.add_argument('--batch_size', type=int, default=64,
                     help='input batch size for training (default: 64)')
-parser.add_argument('--epochs', type=int, default=130,
+parser.add_argument('--epochs', type=int, default=50,
                     help='number of epochs to train (default: 120)')
 parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
                     metavar='LR', help='initial learning rate')
@@ -47,6 +48,7 @@ parser.add_argument('--beta', default=1, type=float,
 
 args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
+print(args)
 
 torch.manual_seed(args.seed)
 if args.cuda:
@@ -55,7 +57,7 @@ if args.cuda:
 model = models.resnet50()
 
 in_features = model.fc.in_features
-model.fc = nn.Linear(in_features, args.num_classes)
+model.fc = nn.Linear(in_features, args.num_classes+1)
 
 
 transform = transforms.Compose([transforms.Resize(256),
@@ -105,16 +107,16 @@ def test(loader):
 
 best_accuracy = 0
 best_acc_epoch = 0
-
-for epoch in range(0, args.epochs):
+epoch_progress_bar = tqdm(range(0, args.epochs),desc= 'Epoch')
+for i,epoch in enumerate(epoch_progress_bar):
 
     xentropy_loss_avg = 0.
     correct = 0.
     total = 0.
 
-    progress_bar = tqdm(train_loader,unit ='img',unit_scale = args.batch_size)
+    progress_bar = tqdm(train_loader,unit ='img',unit_scale = args.batch_size,desc = 'Mini-Batch')
     for i, (images,labels) in enumerate(progress_bar):
-        progress_bar.set_description('Epoch ' + str(epoch))
+        #progress_bar.set_description('Epoch ' + str(epoch))
 
         images = images.cuda()
         labels = labels.cuda()
@@ -139,10 +141,11 @@ for epoch in range(0, args.epochs):
 
     test_acc = test(test_loader)
     tqdm.write('test_acc: %.3f' % (test_acc))
+    epoch_progress_bar.set_postfix(test_accuracy='%.3f' % test_acc)
 
     scheduler.step(epoch)
 
-    row = {'epoch': str(epoch), 'train_acc': str(accuracy), 'test_acc': str(test_acc)}
+    #row = {'epoch': str(epoch), 'train_acc': str(accuracy), 'test_acc': str(test_acc)}
     #csv_logger.writerow(row)
 
     if(test_acc>best_accuracy):
@@ -153,7 +156,7 @@ for epoch in range(0, args.epochs):
 if not os.path.exists('checkpoints'):
     os.mkdir('checkpoints')
 
-torch.save(cnn.state_dict(), 'checkpoints/' + test_id + '.pt')
+torch.save(model.state_dict(), 'checkpoints/' + test_id + '.pt')
 #csv_logger.close()
 
 f = open("best_accuracy.txt", "a+")
