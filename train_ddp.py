@@ -35,11 +35,14 @@ def train(args,local_world_size,rank):
         f"[{os.getpid()}] rank = {dist.get_rank()}, "
         + f"world_size = {dist.get_world_size()}, n = {n}, device_ids = {device_ids} \n", end=''
     )
-    model = models.resnet18()
-    in_features = model.fc.in_features
-    model.fc = nn.Linear(in_features, args.num_classes+1)
-    
-    model = DDP(model.cuda())
+    # model = models.resnet18()
+    # in_features = model.fc.in_features
+    # model.fc = nn.Linear(in_features, args.num_classes+1)
+    model = models.alexnet()
+    if args.no_cuda:
+        model = DDP(model)
+    else:
+        model = DDP(model.cuda())
 
     optimizer = torch.optim.SGD(model.parameters(), args.lr,
                                 momentum=args.momentum,
@@ -47,7 +50,10 @@ def train(args,local_world_size,rank):
 
     scheduler = MultiStepLR(optimizer, milestones=[60, 120, 160], gamma=0.2)
 
-    criterion = nn.CrossEntropyLoss().cuda()
+    if args.no_cuda:
+        criterion = nn.CrossEntropyLoss()
+    else:
+        criterion = nn.CrossEntropyLoss().cuda()
 
 
     transform = transforms.Compose([transforms.Resize(256),
@@ -59,14 +65,16 @@ def train(args,local_world_size,rank):
 
     train_sampler = DistributedSampler(train_dataset,shuffle = True)
     train_loader = DataLoader(train_dataset, batch_size = args.batch_size,shuffle=False, pin_memory = True,sampler = train_sampler)
-
+    images_per_epoch = len(train_loader) * args.batch_size
 
     for epoch in range(0, args.epochs):
         epoch_start = time.time()
         for i, (images, labels) in enumerate(train_loader):
-            images = images.cuda()
-            labels = labels.cuda()
+            if not args.no_cuda:
+                images = images.cuda()
+                labels = labels.cuda()
 
+            model.zero_grad()
             pred = model(images)
 
 
@@ -76,13 +84,13 @@ def train(args,local_world_size,rank):
             optimizer.step()
         epoch_end = time.time()
         diff = epoch_end-epoch_start
-        throughput_local = len(train_dataset) / diff
+        throughput_local = (images_per_epoch) / diff
     print(throughput_local)
     throughput_local = torch.tensor(throughput_local)
     dist.all_reduce(throughput_local)
     print('Reduced Throughput: ')
-    print(throughput)
-    return throughput
+    print(throughput_local)
+    return throughput_local
 
 def ddp_main(args,local_world_size,local_rank):
     os.environ['RANK'] = os.environ['SLURM_PROCID']

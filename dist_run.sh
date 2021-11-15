@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --account=PAS2056
 #SBATCH --cluster=owens
-#SBATCH --nodes=8
+#SBATCH --nodes=2
 #SBATCH --ntasks-per-node=1
 #SBATCH --gpus-per-node=1
 #SBATCH --time=04:00:00
@@ -16,7 +16,7 @@ export MASTER_ADDR=$master_addr
 echo "MASTER_ADDR="$MASTER_ADDR
 
 export MASTER_PORT=12340
-export WORLD_SIZE=8
+export WORLD_SIZE=2
 
 echo job started at `date`
 echo on compute node `cat ${PBS_NODEFILE}`
@@ -31,9 +31,9 @@ cd ${SLURM_SUBMIT_DIR}
 cd ${TMPDIR}
 
 echo job started at `date` >>current.out
-time srun python3 ${SLURM_SUBMIT_DIR}/${EXECFILE} --epochs=4 --local_world_size=1 >>current.out 2>&1
+time srun python3 ${SLURM_SUBMIT_DIR}/${EXECFILE} --epochs=1 --local_world_size=1 --batch_size=64 --no-cuda >>current.out 2>&1
 echo job ended at `date` >>current.out
 
-export SAVEDIR=${SLURM_SUBMIT_DIR}'/tests/dist_test_8.'${PBS_JOBID}
+export SAVEDIR=${SLURM_SUBMIT_DIR}'/tests/dist_test_2_alexnet_strong_cpu.'${PBS_JOBID}
 mkdir ${SAVEDIR}
 mv current.out ${SAVEDIR}
