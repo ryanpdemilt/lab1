@@ -70,6 +70,7 @@ def train(args,local_world_size,rank):
     for epoch in range(0, args.epochs):
         epoch_start = time.time()
         for i, (images, labels) in enumerate(train_loader):
+            # batch_start = time.time()
             if not args.no_cuda:
                 images = images.cuda()
                 labels = labels.cuda()
@@ -82,6 +83,10 @@ def train(args,local_world_size,rank):
 
             xentropy_loss.backward()
             optimizer.step()
+            # batch_end = time.time()
+            # diff_batch = batch_end-batch_start
+            # batch_throughput_local = (batch_size) / diff_batch
+            # print(batch_throughput_local)
         epoch_end = time.time()
         diff = epoch_end-epoch_start
         throughput_local = (images_per_epoch) / diff

@@ -54,7 +54,7 @@ torch.manual_seed(args.seed)
 if args.cuda:
     torch.cuda.manual_seed(args.seed)
 
-model = models.resnet50()
+model = models.resnet18()
 
 in_features = model.fc.in_features
 model.fc = nn.Linear(in_features, args.num_classes+1)
@@ -70,11 +70,11 @@ train_dataset, test_dataset = torch.utils.data.random_split(dataset, [int(len(da
 train_loader = DataLoader(train_dataset, batch_size = args.batch_size, shuffle = True, pin_memory = True, num_workers = 4)
 test_loader = DataLoader(test_dataset, batch_size = args.batch_size, shuffle = True, pin_memory = True, num_workers = 4)
 
-model = nn.DataParallel(model).cuda()
+#model = nn.DataParallel(model)
 
 print(model)
 
-criterion = nn.CrossEntropyLoss().cuda()
+criterion = nn.CrossEntropyLoss()
 
 optimizer = torch.optim.SGD(model.parameters(), args.lr,
                                 momentum=args.momentum,
@@ -118,8 +118,8 @@ for i,epoch in enumerate(epoch_progress_bar):
     for i, (images,labels) in enumerate(progress_bar):
         #progress_bar.set_description('Epoch ' + str(epoch))
 
-        images = images.cuda()
-        labels = labels.cuda()
+        # images = images.cuda()
+        # labels = labels.cuda()
 
         model.zero_grad()
         pred = model(images)
@@ -130,14 +130,14 @@ for i,epoch in enumerate(epoch_progress_bar):
 
         xentropy_loss_avg += xentropy_loss.item()
 
-        pred = torch.max(pred.data, 1)[1]
-        total += labels.size(0)
-        correct += (pred == labels.data).sum().item()
-        accuracy = (correct / total)*100
+        # pred = torch.max(pred.data, 1)[1]
+        # total += labels.size(0)
+        # correct += (pred == labels.data).sum().item()
+        # accuracy = (correct / total)*100
 
-        progress_bar.set_postfix(
-            xentropy='%.3f' % (xentropy_loss_avg / (i + 1)),
-            acc='%.3f' % accuracy)
+        # progress_bar.set_postfix(
+        #     xentropy='%.3f' % (xentropy_loss_avg / (i + 1)),
+        #     acc='%.3f' % accuracy)
 
     test_acc = test(test_loader)
     tqdm.write('test_acc: %.3f' % (test_acc))
