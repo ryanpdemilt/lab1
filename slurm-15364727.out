@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "train.py", line 58, in <module>
-    model.fc = nn.Linear(in_features, args.num_classes)
-NameError: name 'in_features' is not defined

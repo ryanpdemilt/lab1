@@ -21,7 +21,7 @@ from dataset import IMDBWikiDataset
 from torch.nn.parallel import DistributedDataParallel as DDP
 #from util.misc import CSVLogger
 
-data_file = '/users/PCON0023/hamza23/cse5449/lab2/meta.csv'
+data_file = '/users/PAS1906/demilt4/cse5449/lab1/meta.csv'
 
 model_options = ['resnet18', 'resnet50', 'resnet101', 'wideresnet']
 dataset_options = ['IMDB-Wiki']
@@ -35,14 +35,19 @@ def train(args,local_world_size,rank):
         f"[{os.getpid()}] rank = {dist.get_rank()}, "
         + f"world_size = {dist.get_world_size()}, n = {n}, device_ids = {device_ids} \n", end=''
     )
-    model = models.vgg16()
-    in_features = model.classifier[6].in_features
+
+    # model = models.vgg16()
+    # in_features = model.classifier[6].in_features
+    # model.fc = nn.Linear(in_features, args.num_classes+1)
+    model = models.resnet18()
+
+    in_features = model.fc.in_features
     model.fc = nn.Linear(in_features, args.num_classes+1)
 
     if args.no_cuda:
-        model = DDP(model, find_unused_parameters=True)
+        model = DDP(model, find_unused_parameters=True,bucket_cap_mb=int(args.bucket_cap))
     else:
-        model = DDP(model.cuda(), find_unused_parameters=True)
+        model = DDP(model.cuda(), find_unused_parameters=True,bucket_cap_mb=int(args.bucket_cap))
 
     optimizer = torch.optim.SGD(model.parameters(), args.lr,
                                 momentum=args.momentum,
@@ -86,7 +91,7 @@ def train(args,local_world_size,rank):
         diff = epoch_end-epoch_start
         throughput_local = (images_per_epoch) / diff
     print(throughput_local)
-    throughput_local = torch.tensor(throughput_local)
+    throughput_local = torch.tensor(throughput_local).cuda()
     dist.all_reduce(throughput_local)
     print('Reduced Throughput: ')
     print(throughput_local)
@@ -140,5 +145,7 @@ if __name__ == "__main__":
                      help='hyperparameter beta')
     parser.add_argument('--local_rank',type=int,default=0)
     parser.add_argument('--local_world_size',type=int,default=1)
+    parser.add_argument('--bucket_cap','--bc',default=25)
     args = parser.parse_args()
+    print(args)
     ddp_main(args,args.local_world_size,args.local_rank)

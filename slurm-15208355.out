@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "train.py", line 57, in <module>
-    num_ftrs = model_ft.fc.in_features
-NameError: name 'model_ft' is not defined
